@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/bike-med-api/pom.xml" />
+        <option value="$PROJECT_DIR$/bike-med-dispatcher/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

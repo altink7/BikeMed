@@ -1,6 +1,6 @@
 package at.altin.bikemeddispatcher.publisher;
 
-import at.altin.bikemeddispatcher.dto.DiagnoseDTO;
+import at.altin.bikemedapi.dto.DiagnoseDTO;
 import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

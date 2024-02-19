@@ -5,6 +5,7 @@ import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
 import at.altin.bikemeddispatcher.dto.EventDTO;
 import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
 import at.altin.bikemedwerkstatt.data.KonfigurationEntityDao;
+import at.altin.bikemedwerkstatt.model.KonfigurationEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -60,12 +61,16 @@ public class WerkstattService {
         }
 
         werkstattEventDTO.setDiagnoseDTO(event.getDiagnoseDTO());
-        werkstattEventDTO.setStundenSatz(konfigurationEntityDao.findAll().stream().findFirst().get().getStundenSatz());
+        werkstattEventDTO.setStundenSatz(getKonfigurationEntity().getStundenSatz());
         werkstattEventDTO.setEventId(event.getEventId());
-        werkstattEventDTO.setWerkstattName(konfigurationEntityDao.findAll().stream().findFirst().get().getWerkstattName());
+        werkstattEventDTO.setWerkstattName(getKonfigurationEntity().getWerkstattName());
         werkstattEventDTO.setFrom(queueName);
         werkstattEventDTO.setTo(dispatcherQueueName);
 
         return werkstattEventDTO;
+    }
+
+    private KonfigurationEntity getKonfigurationEntity() {
+        return konfigurationEntityDao.findAll().stream().findFirst().orElseThrow(() -> new IllegalArgumentException("Konfiguration not found"));
     }
 }

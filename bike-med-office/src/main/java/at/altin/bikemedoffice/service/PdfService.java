@@ -35,10 +35,8 @@ public class PdfService {
             PdfWriter.getInstance(document, baos);
             document.open();
 
-            // Add big title
             addTitle(document);
 
-            // Add content
             addContent(document, officeData);
 
             document.close();

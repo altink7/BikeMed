@@ -3,9 +3,12 @@ package at.altin.bikemedlager.service;
 import at.altin.bikemedapi.dto.DiagnoseDTO;
 import at.altin.bikemedapi.helper.JsonHelper;
 import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
+import at.altin.bikemeddispatcher.dto.EventDTO;
 import at.altin.bikemeddispatcher.dto.LagerEventDTO;
 import at.altin.bikemedlager.data.ProduktDao;
 import at.altin.bikemedlager.model.Produkt;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -28,8 +31,8 @@ public class LagerService {
     @Value("${queue.lager.name}")
     private String queueName;
 
-    @Value("${queue.office.name}")
-    private String officeQueueName;
+    @Value("${queue.dispatcher.name}")
+    private String dispatcherQueueName;
 
     public LagerService(RabbitTemplate rabbitTemplate, ProduktDao produktDao) {
         this.rabbitTemplate = rabbitTemplate;
@@ -40,13 +43,18 @@ public class LagerService {
     public void handleMessage(String diagnoseEventDTO) {
         try {
             log.info("Received diagnose: {}", diagnoseEventDTO);
-            DiagnoseEventDTO event = JsonHelper.convertJsonToObject(diagnoseEventDTO, DiagnoseEventDTO.class);
 
-            if(!event.getTo().equals(queueName)){
-                log.info("ignoring event for other service");
+            EventDTO baseEvent = JsonHelper.convertJsonToObject(diagnoseEventDTO, EventDTO.class);
+
+            if (baseEvent.getTo() != null && !baseEvent.getTo().equals(queueName)) {
+                log.info("Ignoring event for other service");
+                rabbitTemplate.convertAndSend(dispatcherQueueName, diagnoseEventDTO);
+                return;
             }
 
-            rabbitTemplate.convertAndSend(officeQueueName, JsonHelper.convertObjectToJson(buildLagerEvent(event)));
+            DiagnoseEventDTO event = JsonHelper.convertJsonToObject(diagnoseEventDTO, DiagnoseEventDTO.class);
+
+            rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(buildLagerEvent(event)));
 
 
         } catch (Exception e){
@@ -58,7 +66,7 @@ public class LagerService {
         LagerEventDTO eventDTO = new LagerEventDTO();
         eventDTO.setEventId(event.getEventId());
         eventDTO.setFrom(queueName);
-        eventDTO.setTo(officeQueueName);
+        eventDTO.setTo(dispatcherQueueName);
 
 
         List<Boolean> properties = getDiagnoseBooleans(event);

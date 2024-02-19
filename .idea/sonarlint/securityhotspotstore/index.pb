@@ -134,3 +134,13 @@ Sbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/LagerEventDTO.
 Pbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/ProduktDTO.java,0\5\0572a47e3a049ccdb4fdb99c1183cd7011e31da0
 w
 Gbike-med-lager/src/main/java/at/altin/bikemedlager/data/ProduktDao.java,3\e\3ee30bbb36c6aa72d5a8b5cf3d96d5f923eecd05
+ë
+abike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/listener/WerkstattEventListener.java,0\e\0eb6196ebafd58ae395d159f430f1ed8abfa5a0a
+ç
+]bike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/listener/LagerEventListener.java,b\5\b552ba57d0521257e5f79ac13d8a9d02a146e7c1
+É
+Sbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/OfficeDataDTO.java,1\6\16f49e912287d1d26856f1b3a28b1053f630d9b0
+ê
+`bike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/publisher/OfficeEventPublisher.java,6\7\67217176334b6d99f993681b7b5d3a15702da2ec
+à
+Xbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/OfficeDataEventDTO.java,9\7\97bf3026143d1962201805045f814a91104208ce

@@ -5,8 +5,6 @@ import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
 import at.altin.bikemeddispatcher.dto.EventDTO;
 import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
 import at.altin.bikemedwerkstatt.data.KonfigurationEntityDao;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -55,7 +53,7 @@ public class WerkstattService {
 
     private WerkstattEventDTO buildWerkstattEvent(DiagnoseEventDTO event) {
         WerkstattEventDTO werkstattEventDTO = new WerkstattEventDTO();
-        if(event.getDiagnoseDTO().countTrueBooleans() <= 3) {
+        if(event.getDiagnoseDTO().countFalseBooleans() <= 3) {
             werkstattEventDTO.setAnzahlMitarbeiter(1);
         } else {
             werkstattEventDTO.setAnzahlMitarbeiter(2);

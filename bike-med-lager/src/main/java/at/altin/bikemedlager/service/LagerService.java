@@ -85,18 +85,18 @@ public class LagerService {
     private static List<Boolean> getDiagnoseBooleans(DiagnoseEventDTO event) {
         DiagnoseDTO diagnoseDTO = event.getDiagnoseDTO();
         return Arrays.asList(
-                diagnoseDTO.isPlattenReparatur(),
-                diagnoseDTO.isVentil(),
-                diagnoseDTO.isBremsen(),
-                diagnoseDTO.isSchaltung(),
-                diagnoseDTO.isBeleuchtungVorne(),
-                diagnoseDTO.isBeleuchtungHinten(),
-                diagnoseDTO.isReflector(),
-                diagnoseDTO.isFederung(),
-                diagnoseDTO.isRahmen(),
-                diagnoseDTO.isGabel(),
-                diagnoseDTO.isKettenantrieb(),
-                diagnoseDTO.isElektrischeKomponenten()
+                !diagnoseDTO.isPlattenReparatur(),
+                !diagnoseDTO.isVentil(),
+                !diagnoseDTO.isBremsen(),
+                !diagnoseDTO.isSchaltung(),
+                !diagnoseDTO.isBeleuchtungVorne(),
+                !diagnoseDTO.isBeleuchtungHinten(),
+                !diagnoseDTO.isReflector(),
+                !diagnoseDTO.isFederung(),
+                !diagnoseDTO.isRahmen(),
+                !diagnoseDTO.isGabel(),
+                !diagnoseDTO.isKettenantrieb(),
+                !diagnoseDTO.isElektrischeKomponenten()
         );
     }
 

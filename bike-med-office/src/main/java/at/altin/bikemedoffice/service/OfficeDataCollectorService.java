@@ -92,9 +92,10 @@ public class OfficeDataCollectorService {
             officeData.setElektrischeKomponenten(event.getWerkstattEventDTO().getDiagnoseDTO().isElektrischeKomponenten());
             officeData.setSonstigeProbleme(event.getWerkstattEventDTO().getDiagnoseDTO().isSonstigeProbleme());
             officeData.setCustomNote(event.getWerkstattEventDTO().getDiagnoseDTO().getCustomNote());
-            officeData.setFehlerAnzahl(event.getWerkstattEventDTO().getDiagnoseDTO().countTrueBooleans());
+            officeData.setFehlerAnzahl(event.getWerkstattEventDTO().getDiagnoseDTO().countFalseBooleans());
             officeData.setWerkstattName(event.getWerkstattEventDTO().getWerkstattName());
             officeData.setAnzahlMitarbeiter(event.getWerkstattEventDTO().getAnzahlMitarbeiter());
+            officeData.setStundenSatz(event.getWerkstattEventDTO().getStundenSatz());
         }
     }
 }

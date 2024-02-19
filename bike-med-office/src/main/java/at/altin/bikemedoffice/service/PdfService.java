@@ -5,6 +5,7 @@ import at.altin.bikemedoffice.model.OfficeData;
 import at.altin.bikemedoffice.model.Product;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -33,7 +34,13 @@ public class PdfService {
             Document document = new Document();
             PdfWriter.getInstance(document, baos);
             document.open();
+
+            // Add big title
+            addTitle(document);
+
+            // Add content
             addContent(document, officeData);
+
             document.close();
 
             log.info("PDF generated successfully.");
@@ -45,10 +52,14 @@ public class PdfService {
         }
     }
 
+    private void addTitle(Document document) throws DocumentException {
+        Paragraph titleParagraph = new Paragraph("BikeMed Diagnose Report");
+        titleParagraph.setAlignment(Element.ALIGN_CENTER);
+        titleParagraph.setSpacingAfter(20);
+        document.add(titleParagraph);
+    }
+
     private void addContent(Document document, OfficeData officeData) throws DocumentException {
-        document.add(new Paragraph("ID: " + officeData.getId()));
-        document.add(new Paragraph("\nBikeMed Diagnose:"));
-        document.add(new Paragraph(LINE));
         addDiagnose(document, officeData);
         addWerkstattBereich(document, officeData);
         addProducts(document, officeData);
@@ -72,21 +83,28 @@ public class PdfService {
     }
 
     private void addDiagnose(Document document, OfficeData officeData) throws DocumentException {
-        document.add(new Paragraph("Plattenreparatur: " + (officeData.isPlattenReparatur() ? "✔" : "✘")));
-        document.add(new Paragraph("Ventil: " + (officeData.isVentil() ? "✔" : "✘")));
-        document.add(new Paragraph("Bremsen: " + (officeData.isBremsen() ? "✔" : "✘")));
-        document.add(new Paragraph("Schaltung: " + (officeData.isSchaltung() ? "✔" : "✘")));
-        document.add(new Paragraph("Beleuchtung vorne: " + (officeData.isBeleuchtungVorne() ? "✔" : "✘")));
-        document.add(new Paragraph("Beleuchtung hinten: " + (officeData.isBeleuchtungHinten() ? "✔" : "✘")));
-        document.add(new Paragraph("Reflector: " + (officeData.isReflector() ? "✔" : "✘")));
-        document.add(new Paragraph("Federung: " + (officeData.isFederung() ? "✔" : "✘")));
-        document.add(new Paragraph("Rahmen: " + (officeData.isRahmen() ? "✔" : "✘")));
-        document.add(new Paragraph("Gabel: " + (officeData.isGabel() ? "✔" : "✘")));
-        document.add(new Paragraph("Kettenantrieb: " + (officeData.isKettenantrieb() ? "✔" : "✘")));
-        document.add(new Paragraph("Elektrische Komponenten: " + (officeData.isElektrischeKomponenten() ? "✔" : "✘")));
-        document.add(new Paragraph("Sonstige Probleme: " + (officeData.isSonstigeProbleme() ? "✔" : "✘")));
+        document.add(new Paragraph("\nBikeMed Diagnose:"));
+        document.add(new Paragraph(LINE));
+        addCheckboxItem(document, "Plattenreparatur", officeData.isPlattenReparatur());
+        addCheckboxItem(document, "Ventil", officeData.isVentil());
+        addCheckboxItem(document, "Bremsen", officeData.isBremsen());
+        addCheckboxItem(document, "Schaltung", officeData.isSchaltung());
+        addCheckboxItem(document, "Beleuchtung vorne", officeData.isBeleuchtungVorne());
+        addCheckboxItem(document, "Beleuchtung hinten", officeData.isBeleuchtungHinten());
+        addCheckboxItem(document, "Reflector", officeData.isReflector());
+        addCheckboxItem(document, "Federung", officeData.isFederung());
+        addCheckboxItem(document, "Rahmen", officeData.isRahmen());
+        addCheckboxItem(document, "Gabel", officeData.isGabel());
+        addCheckboxItem(document, "Kettenantrieb", officeData.isKettenantrieb());
+        addCheckboxItem(document, "Elektrische Komponenten", officeData.isElektrischeKomponenten());
+        addCheckboxItem(document, "Sonstige Probleme", officeData.isSonstigeProbleme());
         document.add(new Paragraph("Custom Note: " + officeData.getCustomNote()));
         document.add(new Paragraph("Fehler Anzahl: " + officeData.getFehlerAnzahl()));
+    }
+
+    private void addCheckboxItem(Document document, String label, boolean checked) throws DocumentException {
+        Paragraph paragraph = new Paragraph(label + ": " + (checked ? "In Ordnung" : "Nicht in Ordnung"));
+        document.add(paragraph);
     }
 
     private void addWerkstattBereich(Document document, OfficeData officeData) throws DocumentException {

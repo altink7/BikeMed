@@ -1,6 +1,5 @@
 package at.altin.bikemedapi.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,12 +31,12 @@ public class DiagnoseDTO implements Serializable {
     private boolean sonstigeProbleme;
     private String customNote;
 
-    public long countTrueBooleans() {
+    public long countFalseBooleans() {
         return Arrays.stream(getClass().getDeclaredFields())
                 .filter(field -> field.getType() == boolean.class)
                 .mapToLong(field -> {
                     try {
-                        return field.getBoolean(this) ? 1 : 0;
+                        return field.getBoolean(this) ? 0 : 1;
                     } catch (IllegalAccessException e) {
                         throw new RuntimeException("Fehler beim Zugriff auf das Feld", e);
                     }

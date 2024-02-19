@@ -27,18 +27,18 @@ export default {
   data() {
     return {
       diagnosisQuestions: {
-        plattenReparatur: ['Ist ein Reifen platt?'],
+        plattenReparatur: ['Sind Reifen intakt?'],
         ventil: ['Ist das Ventil intakt?'],
         bremsen: ['Funktionieren die Bremsen ordnungsgemäß?'],
         schaltung: ['Schaltet die Gangschaltung korrekt?'],
         beleuchtungVorne: ['Funktioniert das  Vorderlicht?'],
         beleuchtungHinten: ['Funktioniert das Rücklicht?'],
         reflector: ['Sind die Reflektoren intakt?'],
-        federung: ['Gibt es Probleme mit der Federung?'],
-        rahmen: ['Gibt es Risse oder Beschädigungen am Rahmen?'],
-        gabel: ['Gibt es Risse oder Beschädigungen an der Gabel?'],
+        federung: ['Funktioniert die Federung?'],
+        rahmen: ['Es gibt keine Risse oder Beschädigungen am Rahmen?'],
+        gabel: ['Es gibt keine Risse oder Beschädigungen an der Gabel?'],
         kettenantrieb: ['Funktioniert die Kette ordnungsgemäß?'],
-        elektrischeKomponenten: ['Gibt es Probleme mit der elektrischen Steuerung?'],
+        elektrischeKomponenten: ['Es gibt keine Probleme mit der elektrischen Steuerung?'],
         sonstigeProbleme: ['Benutzerdefinierte Anmerkungen']
       },
       selectedComponents: [],
@@ -69,6 +69,11 @@ export default {
         const response = await axios.post('http://localhost:5001/api/diagnose', diagnose);
         alert('Identifikationsnummer: ' + response.data);
         console.log('Diagnose abgeschickt', response.data);
+
+        const pdfResponse = await axios.get('http://localhost:5004/api/pdf/' + response.data, { responseType: 'blob' });
+        const file = new Blob([pdfResponse.data], { type: 'application/pdf' });
+        const fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
       } catch (error) {
         console.error('Error submitting diagnosis', error);
       }

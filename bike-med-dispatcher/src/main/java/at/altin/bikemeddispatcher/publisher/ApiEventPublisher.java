@@ -1,6 +1,7 @@
 package at.altin.bikemeddispatcher.publisher;
 
 import at.altin.bikemedapi.dto.DiagnoseDTO;
+import at.altin.bikemedapi.helper.JsonHelper;
 import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -27,15 +28,15 @@ public class ApiEventPublisher {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void publishEvent(DiagnoseEventDTO diagnoseEventDTO) {
-        log.info("Publishing event {} to {}", diagnoseEventDTO.getEventId(), diagnoseEventDTO.getTo());
+    public void publishEvent(String diagnoseEventDTO) {
+        log.info("Publishing event {} ", diagnoseEventDTO);
         rabbitTemplate.convertAndSend(from, diagnoseEventDTO);
     }
 
     public void buildAndPublish(DiagnoseDTO diagnoseDTO) {
         UUID eventId = UUID.randomUUID();
-        publishEvent(buildDiagnoseEvent(diagnoseDTO, this.toWerkstatt, eventId));
-        publishEvent(buildDiagnoseEvent(diagnoseDTO, this.toLager, eventId));
+        publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseDTO, this.toWerkstatt, eventId)));
+        publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseDTO, this.toLager, eventId)));
     }
 
     private DiagnoseEventDTO buildDiagnoseEvent(DiagnoseDTO diagnoseDTO, String to, UUID eventId) {

@@ -10,6 +10,9 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class DiagnoseEventDTO extends EventDTO implements Serializable {
-    DiagnoseDTO diagnoseDTO;
+public class WerkstattEventDTO extends EventDTO implements Serializable {
+    private DiagnoseDTO diagnoseDTO;
+    private String werkstattName;
+    private int anzahlMitarbeiter;
+    private double stundenSatz;
 }

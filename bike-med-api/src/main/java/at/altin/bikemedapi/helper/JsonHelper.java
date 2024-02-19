@@ -12,6 +12,17 @@ public class JsonHelper {
         // utility class
     }
 
+    public static String convertObjectToJson(Object object) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            log.info("Converting object to JSON: {}", object);
+            return objectMapper.writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            log.error("Error converting object to JSON", e);
+            throw new RuntimeJsonMappingException("Error converting object to JSON");
+        }
+    }
+    
     public static <T> T convertJsonToObject(String json, Class<T> clazz) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {

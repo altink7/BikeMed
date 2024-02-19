@@ -132,3 +132,5 @@ p
 Sbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/LagerEventDTO.java,a\5\a5cce13fe33b32aa698b47d58b63ab9a40bf2368
 €
 Pbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/ProduktDTO.java,0\5\0572a47e3a049ccdb4fdb99c1183cd7011e31da0
+w
+Gbike-med-lager/src/main/java/at/altin/bikemedlager/data/ProduktDao.java,3\e\3ee30bbb36c6aa72d5a8b5cf3d96d5f923eecd05

@@ -12,5 +12,5 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 public class LagerEventDTO extends EventDTO implements Serializable {
-    private List<Map<String, Double>> products;
+    private Map<String, Double> products;
 }

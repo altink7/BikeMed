@@ -40,4 +40,27 @@ public class DiagnoseDTO implements Serializable {
                 })
                 .sum();
     }
+
+    public static String getPropertyNameAtIndex(int index) {
+        String[] propertyNames = {
+                "plattenReparatur",
+                "ventil",
+                "bremsen",
+                "schaltung",
+                "beleuchtungVorne",
+                "beleuchtungHinten",
+                "reflector",
+                "federung",
+                "rahmen",
+                "gabel",
+                "kettenantrieb",
+                "elektrischeKomponenten"};
+
+        if (index >= 0 && index < propertyNames.length) {
+            return propertyNames[index];
+        } else {
+            throw new IllegalArgumentException("Ungültiger Index für Eigenschaften namen: " + index);
+        }
+    }
+
 }

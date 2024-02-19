@@ -38,7 +38,7 @@ public class WerkstattService {
                 log.info("ignoring event for other service");
             }
 
-            rabbitTemplate.convertAndSend(officeQueueName, buildWerkstattEvent(event));
+            rabbitTemplate.convertAndSend(officeQueueName, JsonHelper.convertObjectToJson(buildWerkstattEvent(event)));
 
 
         } catch (Exception e){

@@ -28,21 +28,23 @@ public class ApiEventPublisher {
     }
 
     public void publishEvent(DiagnoseEventDTO diagnoseEventDTO) {
-        log.info("Publishing event");
+        log.info("Publishing event {} to {}", diagnoseEventDTO.getEventId(), diagnoseEventDTO.getTo());
         rabbitTemplate.convertAndSend(from, diagnoseEventDTO);
     }
 
     public void buildAndPublish(DiagnoseDTO diagnoseDTO) {
-        publishEvent(buildDiagnoseEvent(diagnoseDTO, this.toWerkstatt));
-        publishEvent(buildDiagnoseEvent(diagnoseDTO, this.toLager));
+        UUID eventId = UUID.randomUUID();
+        publishEvent(buildDiagnoseEvent(diagnoseDTO, this.toWerkstatt, eventId));
+        publishEvent(buildDiagnoseEvent(diagnoseDTO, this.toLager, eventId));
     }
 
-    private DiagnoseEventDTO buildDiagnoseEvent(DiagnoseDTO diagnoseDTO, String to) {
-        log.info("Building event");
-        return DiagnoseEventDTO.builder()
-                .eventId(UUID.randomUUID())
-                .diagnoseDTO(diagnoseDTO)
-                .from(from)
-                .to(to).build();
+    private DiagnoseEventDTO buildDiagnoseEvent(DiagnoseDTO diagnoseDTO, String to, UUID eventId) {
+        log.info("Building event to {}",  to);
+        DiagnoseEventDTO eventDTO = new DiagnoseEventDTO();
+        eventDTO.setEventId(eventId);
+        eventDTO.setDiagnoseDTO(diagnoseDTO);
+        eventDTO.setFrom(this.from);
+        eventDTO.setTo(to);
+        return eventDTO;
     }
 }

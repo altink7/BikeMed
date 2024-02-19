@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RequestMapping("api/diagnose")
 @RestController
 @CrossOrigin
@@ -29,9 +31,10 @@ public class DiagnoseControllerImpl implements DiagnoseController {
 
     @PostMapping
     @Override
-    public ResponseEntity<Boolean> addDiagnose(@RequestBody DiagnoseDTO diagnoseDTO) {
+    public ResponseEntity<UUID> addDiagnose(@RequestBody DiagnoseDTO diagnoseDTO) {
         log.info("Diagnose added: {}", diagnoseDTO);
+        diagnoseDTO.setId(UUID.randomUUID());
         rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(diagnoseDTO));
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok(diagnoseDTO.getId());
     }
 }

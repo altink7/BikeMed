@@ -136,10 +136,6 @@ abike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/listener/Werkstatt
 `bike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/publisher/OfficeEventPublisher.java,6\7\67217176334b6d99f993681b7b5d3a15702da2ec
 ˆ
 Xbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/OfficeDataEventDTO.java,9\7\97bf3026143d1962201805045f814a91104208ce
-‚
-Rbike-med-office/src/main/java/at/altin/bikemedoffice/service/WerkstattService.java,b\c\bc9bae7dfe5e6ce98006d86c58a3fdc9ea40816a
-
-Obike-med-office/src/main/java/at/altin/bikemedoffice/service/OfficeService.java,3\1\31c6a1a96cad17825433c1e308319bfc2dd162c4
 z
 Jbike-med-office/src/main/java/at/altin/bikemedoffice/model/OfficeData.java,a\d\ad9f56862cd4dd1f6d97f17bcafa700ab588a94b
 w

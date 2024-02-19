@@ -34,7 +34,7 @@ public class ApiEventPublisher {
     }
 
     public void buildAndPublish(DiagnoseDTO diagnoseDTO) {
-        UUID eventId = UUID.randomUUID();
+        UUID eventId = diagnoseDTO.getId();
         publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseDTO, this.toWerkstatt, eventId)));
         publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseDTO, this.toLager, eventId)));
     }

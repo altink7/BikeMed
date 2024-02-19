@@ -1,17 +1,21 @@
 package at.altin.bikemedapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 public class DiagnoseDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    private UUID id;
 
     private boolean plattenReparatur;
     private boolean ventil;

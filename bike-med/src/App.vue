@@ -67,6 +67,7 @@ export default {
 
         console.log('Diagnose:', diagnose);
         const response = await axios.post('http://localhost:5001/api/diagnose', diagnose);
+        alert('Identifikationsnummer: ' + response.data);
         console.log('Diagnose abgeschickt', response.data);
       } catch (error) {
         console.error('Error submitting diagnosis', error);

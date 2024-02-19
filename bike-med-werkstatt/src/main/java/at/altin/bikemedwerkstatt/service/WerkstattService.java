@@ -45,7 +45,7 @@ public class WerkstattService {
 
             DiagnoseEventDTO event = JsonHelper.convertJsonToObject(diagnoseEventDTO, DiagnoseEventDTO.class);
 
-            rabbitTemplate.convertAndSend(queueName, buildWerkstattEvent(event));
+            rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(buildWerkstattEvent(event)));
 
 
         } catch (Exception e){

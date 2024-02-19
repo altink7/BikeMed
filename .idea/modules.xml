@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BikeMed.iml" filepath="$PROJECT_DIR$/.idea/BikeMed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bike-med-office/bike-med-office.iml" filepath="$PROJECT_DIR$/bike-med-office/bike-med-office.iml" />
     </modules>
   </component>
 </project>

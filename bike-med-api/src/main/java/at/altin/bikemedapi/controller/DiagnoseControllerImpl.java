@@ -31,7 +31,7 @@ public class DiagnoseControllerImpl implements DiagnoseController {
     @Override
     public ResponseEntity<Boolean> addDiagnose(@RequestBody DiagnoseDTO diagnoseDTO) {
         log.info("Diagnose added: {}", diagnoseDTO);
-        rabbitTemplate.convertAndSend(queueName, diagnoseDTO);
+        rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(diagnoseDTO));
         return ResponseEntity.ok(true);
     }
 }

@@ -44,3 +44,18 @@ diese sollen selber die Daten erfassen die dann in der Rechnung an das Office we
 Das Office soll eine Rechnung erstellen und diese als PDF über die API bereitstellen.
 
 
+------------------
+# For Development
+
+#### To run postgres in a docker container
+```bash
+docker run --name bike-med -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 -d postgres
+```
+
+
+
+
+
+
+
+

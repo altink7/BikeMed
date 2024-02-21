@@ -1,7 +1,7 @@
 package at.altin.bikemedoffice.service;
 
-import at.altin.bikemedapi.helper.JsonHelper;
-import at.altin.bikemeddispatcher.dto.EventDTO;
+import at.altin.bikemedcommons.dto.EventDTO;
+import at.altin.bikemedcommons.helper.JsonHelper;
 import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
 import at.altin.bikemedoffice.data.OfficeDataDao;
 import at.altin.bikemedoffice.data.ProductDao;
@@ -78,21 +78,21 @@ public class OfficeDataCollectorService {
 
     private void setWerkstattEventData(OfficeDataEventDTO event, OfficeData officeData) {
         if(event.getWerkstattEventDTO() != null) {
-            officeData.setPlattenReparatur(event.getWerkstattEventDTO().getDiagnoseDTO().isPlattenReparatur());
-            officeData.setVentil(event.getWerkstattEventDTO().getDiagnoseDTO().isVentil());
-            officeData.setBremsen(event.getWerkstattEventDTO().getDiagnoseDTO().isBremsen());
-            officeData.setSchaltung(event.getWerkstattEventDTO().getDiagnoseDTO().isSchaltung());
-            officeData.setBeleuchtungVorne(event.getWerkstattEventDTO().getDiagnoseDTO().isBeleuchtungVorne());
-            officeData.setBeleuchtungHinten(event.getWerkstattEventDTO().getDiagnoseDTO().isBeleuchtungHinten());
-            officeData.setReflector(event.getWerkstattEventDTO().getDiagnoseDTO().isReflector());
-            officeData.setFederung(event.getWerkstattEventDTO().getDiagnoseDTO().isFederung());
-            officeData.setRahmen(event.getWerkstattEventDTO().getDiagnoseDTO().isRahmen());
-            officeData.setGabel(event.getWerkstattEventDTO().getDiagnoseDTO().isGabel());
-            officeData.setKettenantrieb(event.getWerkstattEventDTO().getDiagnoseDTO().isKettenantrieb());
-            officeData.setElektrischeKomponenten(event.getWerkstattEventDTO().getDiagnoseDTO().isElektrischeKomponenten());
-            officeData.setSonstigeProbleme(event.getWerkstattEventDTO().getDiagnoseDTO().isSonstigeProbleme());
-            officeData.setCustomNote(event.getWerkstattEventDTO().getDiagnoseDTO().getCustomNote());
-            officeData.setFehlerAnzahl(event.getWerkstattEventDTO().getDiagnoseDTO().countFalseBooleans());
+            officeData.setPlattenReparatur(event.getWerkstattEventDTO().getDiagnoseEventDTO().isPlattenReparatur());
+            officeData.setVentil(event.getWerkstattEventDTO().getDiagnoseEventDTO().isVentil());
+            officeData.setBremsen(event.getWerkstattEventDTO().getDiagnoseEventDTO().isBremsen());
+            officeData.setSchaltung(event.getWerkstattEventDTO().getDiagnoseEventDTO().isSchaltung());
+            officeData.setBeleuchtungVorne(event.getWerkstattEventDTO().getDiagnoseEventDTO().isBeleuchtungVorne());
+            officeData.setBeleuchtungHinten(event.getWerkstattEventDTO().getDiagnoseEventDTO().isBeleuchtungHinten());
+            officeData.setReflector(event.getWerkstattEventDTO().getDiagnoseEventDTO().isReflector());
+            officeData.setFederung(event.getWerkstattEventDTO().getDiagnoseEventDTO().isFederung());
+            officeData.setRahmen(event.getWerkstattEventDTO().getDiagnoseEventDTO().isRahmen());
+            officeData.setGabel(event.getWerkstattEventDTO().getDiagnoseEventDTO().isGabel());
+            officeData.setKettenantrieb(event.getWerkstattEventDTO().getDiagnoseEventDTO().isKettenantrieb());
+            officeData.setElektrischeKomponenten(event.getWerkstattEventDTO().getDiagnoseEventDTO().isElektrischeKomponenten());
+            officeData.setSonstigeProbleme(event.getWerkstattEventDTO().getDiagnoseEventDTO().isSonstigeProbleme());
+            officeData.setCustomNote(event.getWerkstattEventDTO().getDiagnoseEventDTO().getCustomNote());
+            officeData.setFehlerAnzahl(event.getWerkstattEventDTO().getDiagnoseEventDTO().countFalseBooleans());
             officeData.setWerkstattName(event.getWerkstattEventDTO().getWerkstattName());
             officeData.setAnzahlMitarbeiter(event.getWerkstattEventDTO().getAnzahlMitarbeiter());
             officeData.setStundenSatz(event.getWerkstattEventDTO().getStundenSatz());

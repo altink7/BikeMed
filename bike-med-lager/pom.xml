@@ -54,7 +54,7 @@
 
         <dependency>
             <groupId>at.altin</groupId>
-            <artifactId>bike-med-api</artifactId>
+            <artifactId>bike-med-commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

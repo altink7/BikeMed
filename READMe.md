@@ -8,7 +8,11 @@ Diese Anwendung ist als On-Premise-Anwendung konzipiert und dient als Beispiel f
 
 ## Komponentenübersicht
 
+
 1. **BikeMed (Frontend)**: Eine Vue.js-basierte Frontend-Anwendung, in der Diagnosedaten erfasst werden.
+
+2. **BikeMed-Commons**: Ein gemeinsames Modul, das von der API, dem Dispatcher, dem Lager, der Werkstatt und dem Office verwendet wird.
+    Hier sollen Methoden und Klassen definiert werden, die von mehreren Komponenten verwendet werden.
 
 2. **BikeMed-API**: Die API, die die vom Frontend erfassten Diagnosedaten verarbeitet und Events an den Dispatcher sendet.
 

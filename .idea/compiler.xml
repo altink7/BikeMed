@@ -12,12 +12,14 @@
         <module name="bike-med-werkstatt" />
         <module name="bike-med-dispatcher" />
         <module name="bike-med-office" />
+        <module name="bike-med-commons" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="bike-med-api" options="-parameters" />
+      <module name="bike-med-commons" options="-parameters" />
       <module name="bike-med-dispatcher" options="-parameters" />
       <module name="bike-med-lager" options="-parameters" />
       <module name="bike-med-office" options="-parameters" />

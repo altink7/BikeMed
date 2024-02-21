@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/bike-med-werkstatt/pom.xml" />
         <option value="$PROJECT_DIR$/bike-med-lager/pom.xml" />
         <option value="$PROJECT_DIR$/bike-med-office/pom.xml" />
+        <option value="$PROJECT_DIR$/bike-med-commons/pom.xml" />
       </list>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />

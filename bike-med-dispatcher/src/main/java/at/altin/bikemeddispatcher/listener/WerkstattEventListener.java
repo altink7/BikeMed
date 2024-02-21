@@ -1,6 +1,7 @@
 package at.altin.bikemeddispatcher.listener;
 
-import at.altin.bikemedapi.helper.JsonHelper;
+import at.altin.bikemedcommons.helper.JsonHelper;
+import at.altin.bikemedcommons.listener.CommonEventListener;
 import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
 import at.altin.bikemeddispatcher.publisher.OfficeEventPublisher;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class WerkstattEventListener {
+public class WerkstattEventListener implements CommonEventListener {
 
     private final OfficeEventPublisher officeEventPublisher;
 

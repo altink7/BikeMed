@@ -1,11 +1,11 @@
 package at.altin.bikemedwerkstatt.service;
 
-import at.altin.bikemedapi.helper.JsonHelper;
+import at.altin.bikemedcommons.dto.EventDTO;
 import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
-import at.altin.bikemeddispatcher.dto.EventDTO;
 import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
 import at.altin.bikemedwerkstatt.data.KonfigurationEntityDao;
 import at.altin.bikemedwerkstatt.model.KonfigurationEntity;
+import at.altin.bikemedcommons.helper.JsonHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -60,7 +60,7 @@ public class WerkstattService {
             werkstattEventDTO.setAnzahlMitarbeiter(2);
         }
 
-        werkstattEventDTO.setDiagnoseDTO(event.getDiagnoseDTO());
+        werkstattEventDTO.setDiagnoseEventDTO(event.getDiagnoseDTO());
         werkstattEventDTO.setStundenSatz(getKonfigurationEntity().getStundenSatz());
         werkstattEventDTO.setEventId(event.getEventId());
         werkstattEventDTO.setWerkstattName(getKonfigurationEntity().getWerkstattName());

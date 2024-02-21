@@ -1,7 +1,7 @@
 package at.altin.bikemeddispatcher.publisher;
 
-import at.altin.bikemedapi.dto.DiagnoseDTO;
-import at.altin.bikemedapi.helper.JsonHelper;
+import at.altin.bikemedcommons.helper.JsonHelper;
+import at.altin.bikemedcommons.publisher.CommonEventPublisher;
 import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Component
 @Slf4j
-public class ApiEventPublisher {
+public class ApiEventPublisher implements CommonEventPublisher {
     private final RabbitTemplate rabbitTemplate;
 
     @Value("${queue.dispatcher.name}")
@@ -28,24 +28,23 @@ public class ApiEventPublisher {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void publishEvent(String diagnoseEventDTO) {
+    @Override
+    public void publish(String diagnoseEventDTO) {
         log.info("Publishing event {} ", diagnoseEventDTO);
         rabbitTemplate.convertAndSend(from, diagnoseEventDTO);
     }
 
-    public void buildAndPublish(DiagnoseDTO diagnoseDTO) {
-        UUID eventId = diagnoseDTO.getId();
-        publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseDTO, this.toWerkstatt, eventId)));
-        publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseDTO, this.toLager, eventId)));
+    public void buildAndPublish(DiagnoseEventDTO diagnoseEventDTO) {
+        UUID eventId = diagnoseEventDTO.getEventId();
+        publish(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseEventDTO, this.toWerkstatt, eventId)));
+        publish(JsonHelper.convertObjectToJson(buildDiagnoseEvent(diagnoseEventDTO, this.toLager, eventId)));
     }
 
-    private DiagnoseEventDTO buildDiagnoseEvent(DiagnoseDTO diagnoseDTO, String to, UUID eventId) {
+    private DiagnoseEventDTO buildDiagnoseEvent(DiagnoseEventDTO diagnoseEventDTO, String to, UUID eventId) {
         log.info("Building event to {}",  to);
-        DiagnoseEventDTO eventDTO = new DiagnoseEventDTO();
-        eventDTO.setEventId(eventId);
-        eventDTO.setDiagnoseDTO(diagnoseDTO);
-        eventDTO.setFrom(this.from);
-        eventDTO.setTo(to);
-        return eventDTO;
+        diagnoseEventDTO.setEventId(eventId);
+        diagnoseEventDTO.setFrom(this.from);
+        diagnoseEventDTO.setTo(to);
+        return diagnoseEventDTO;
     }
 }

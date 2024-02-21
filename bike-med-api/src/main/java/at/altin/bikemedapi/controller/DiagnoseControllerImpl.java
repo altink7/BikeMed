@@ -1,8 +1,8 @@
 package at.altin.bikemedapi.controller;
 
 import at.altin.bikemedapi.controller.api.DiagnoseController;
-import at.altin.bikemedapi.dto.DiagnoseDTO;
-import at.altin.bikemedapi.helper.JsonHelper;
+import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
+import at.altin.bikemedcommons.helper.JsonHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -31,10 +31,10 @@ public class DiagnoseControllerImpl implements DiagnoseController {
 
     @PostMapping
     @Override
-    public ResponseEntity<UUID> addDiagnose(@RequestBody DiagnoseDTO diagnoseDTO) {
-        log.info("Diagnose added: {}", diagnoseDTO);
-        diagnoseDTO.setId(UUID.randomUUID());
-        rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(diagnoseDTO));
-        return ResponseEntity.ok(diagnoseDTO.getId());
+    public ResponseEntity<UUID> addDiagnose(@RequestBody DiagnoseEventDTO diagnoseEventDTO) {
+        log.info("Diagnose added: {}", diagnoseEventDTO);
+        diagnoseEventDTO.setEventId(UUID.randomUUID());
+        rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(diagnoseEventDTO));
+        return ResponseEntity.ok(diagnoseEventDTO.getEventId());
     }
 }

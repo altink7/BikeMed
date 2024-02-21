@@ -1,5 +1,6 @@
 package at.altin.bikemedoffice.controller;
 
+import at.altin.bikemedoffice.controller.api.PdfController;
 import at.altin.bikemedoffice.service.PdfService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,13 +12,14 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/pdf")
-public class PdfController {
+public class PdfControllerImpl implements PdfController {
     private final PdfService pdfService;
 
-    public PdfController(PdfService pdfService) {
+    public PdfControllerImpl(PdfService pdfService) {
         this.pdfService = pdfService;
     }
 
+    @Override
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> generatePdf(@PathVariable UUID id) {
         byte[] pdfBytes = pdfService.generatePdf(id);

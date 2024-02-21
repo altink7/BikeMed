@@ -1,7 +1,7 @@
 package at.altin.bikemeddispatcher.publisher;
 
-import at.altin.bikemedapi.helper.JsonHelper;
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
+import at.altin.bikemedcommons.helper.JsonHelper;
+import at.altin.bikemedcommons.publisher.CommonEventPublisher;
 import at.altin.bikemeddispatcher.dto.LagerEventDTO;
 import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
 import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class OfficeEventPublisher {
+public class OfficeEventPublisher implements CommonEventPublisher {
 
     private final RabbitTemplate rabbitTemplate;
 
@@ -26,7 +26,8 @@ public class OfficeEventPublisher {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void publishEvent(String officeDataDTO) {
+    @Override
+    public void publish(String officeDataDTO) {
         log.info("Publishing event {} ", officeDataDTO);
         rabbitTemplate.convertAndSend(from, officeDataDTO);
     }
@@ -37,7 +38,7 @@ public class OfficeEventPublisher {
             return;
         }
 
-        publishEvent(JsonHelper.convertObjectToJson(buildDiagnoseEvent(werkstattEventDTO, lagerEventDTO, this.toOffice)));
+        publish(JsonHelper.convertObjectToJson(buildDiagnoseEvent(werkstattEventDTO, lagerEventDTO, this.toOffice)));
 
     }
 

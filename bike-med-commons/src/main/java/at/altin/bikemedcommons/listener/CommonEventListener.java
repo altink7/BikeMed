@@ -1,7 +1,5 @@
 package at.altin.bikemedcommons.listener;
 
-import java.lang.annotation.Documented;
-
 /**
  * CommonEventListener
  * This interface is used to define the common event listener.

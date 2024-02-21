@@ -1,8 +1,10 @@
 package at.altin.bikemedoffice.service;
 
+import at.altin.bikemedcommons.exception.BikeMedException;
 import at.altin.bikemedoffice.data.OfficeDataDao;
 import at.altin.bikemedoffice.model.OfficeData;
 import at.altin.bikemedoffice.model.Product;
+import at.altin.bikemedoffice.service.api.PdfService;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -17,11 +19,11 @@ import java.util.UUID;
 
 @Service
 @Slf4j
-public class PdfService {
+public class PdfServiceImpl implements PdfService {
     public static final String LINE = "------------------------------";
     private final OfficeDataDao officeDataDao;
 
-    public PdfService(OfficeDataDao officeDataDao) {
+    public PdfServiceImpl(OfficeDataDao officeDataDao) {
         this.officeDataDao = officeDataDao;
     }
 
@@ -30,9 +32,9 @@ public class PdfService {
             OfficeData officeData = officeDataDao.findById(officeDataId)
                     .orElseThrow(() -> new IllegalArgumentException("Office data not found"));
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             Document document = new Document();
-            PdfWriter.getInstance(document, baos);
+            PdfWriter.getInstance(document, byteArrayOutputStream);
             document.open();
 
             addTitle(document);
@@ -43,10 +45,10 @@ public class PdfService {
 
             log.info("PDF generated successfully.");
 
-            return baos.toByteArray();
+            return byteArrayOutputStream.toByteArray();
         } catch (Exception e) {
             log.error("Error generating PDF", e);
-            throw new RuntimeException("Error generating PDF");
+            throw new BikeMedException("Error generating PDF");
         }
     }
 

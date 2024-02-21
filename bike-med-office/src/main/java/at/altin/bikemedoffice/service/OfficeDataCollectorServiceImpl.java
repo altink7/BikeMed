@@ -1,60 +1,27 @@
 package at.altin.bikemedoffice.service;
 
-import at.altin.bikemedcommons.dto.EventDTO;
-import at.altin.bikemedcommons.helper.JsonHelper;
 import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
 import at.altin.bikemedoffice.data.OfficeDataDao;
 import at.altin.bikemedoffice.data.ProductDao;
 import at.altin.bikemedoffice.model.OfficeData;
 import at.altin.bikemedoffice.model.Product;
+import at.altin.bikemedoffice.service.api.OfficeDataCollectorService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class OfficeDataCollectorService {
-    private final RabbitTemplate rabbitTemplate;
+public class OfficeDataCollectorServiceImpl implements OfficeDataCollectorService {
     private final OfficeDataDao officeDataDao;
     private final ProductDao productDao;
 
-    @Value("${queue.office.name}")
-    private String queueName;
-
-    @Value("${queue.dispatcher.name}")
-    private String dispatcherQueueName;
-
-    public OfficeDataCollectorService(RabbitTemplate rabbitTemplate,
-                                      OfficeDataDao officeDataDao,
-                                      ProductDao productDao) {
-        this.rabbitTemplate = rabbitTemplate;
+    public OfficeDataCollectorServiceImpl(OfficeDataDao officeDataDao,
+                                          ProductDao productDao) {
         this.officeDataDao = officeDataDao;
         this.productDao = productDao;
     }
 
-    @RabbitListener(queues = "${queue.dispatcher.name}")
-    public void handleMessage(String diagnoseEventDTO) {
-        try {
-            log.info("Received diagnose: {}", diagnoseEventDTO);
-            EventDTO baseEvent = JsonHelper.convertJsonToObject(diagnoseEventDTO, EventDTO.class);
-
-            if (baseEvent.getTo() != null && !baseEvent.getTo().equals(queueName)) {
-                log.info("Ignoring event for other service");
-                rabbitTemplate.convertAndSend(dispatcherQueueName, diagnoseEventDTO);
-                return;
-            }
-
-            saveOfficeData(JsonHelper.convertJsonToObject(diagnoseEventDTO, OfficeDataEventDTO.class));
-
-        } catch (Exception e){
-            log.error("Error handling message", e);
-        }
-    }
-
-
-    public void saveOfficeData(OfficeDataEventDTO event) {
+    public void collectOfficeData(OfficeDataEventDTO event) {
         log.info("Saving office data: {}", event);
         OfficeData officeData = officeDataDao.findById(event.getEventId()).orElse(new OfficeData());
         officeData.setId(event.getEventId());

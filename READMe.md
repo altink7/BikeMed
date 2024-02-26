@@ -13,6 +13,7 @@ Diese Anwendung ist als On-Premise-Anwendung konzipiert und dient als Beispiel f
 
 2. **BikeMed-Commons**: Ein gemeinsames Modul, das von der API, dem Dispatcher, dem Lager, der Werkstatt und dem Office verwendet wird.
     Hier sollen Methoden und Klassen definiert werden, die von mehreren Komponenten verwendet werden.
+   -- siehe https://github.com/altink7/bikemedcommons/packages/2079667
 
 2. **BikeMed-API**: Die API, die die vom Frontend erfassten Diagnosedaten verarbeitet und Events an den Dispatcher sendet.
 

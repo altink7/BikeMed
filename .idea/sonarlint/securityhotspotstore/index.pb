@@ -9,8 +9,6 @@ L
 bike-med/src/assets/main.css,0\1\015c209a94b575ca0155a592dfc9b9f58b7a140a
 D
 bike-med/src/App.vue,5\4\54cdd60932fea2743c1b1012d5eb625f41cac4e0
-s
-Cbike-med-api/src/main/java/at/altin/bikemedapi/dto/DiagnoseDTO.java,1\e\1e3030f9b24adcc4d7495f9c34d3c6a2ac6423e9
 Ö
 Ubike-med-api/src/main/java/at/altin/bikemedapi/controller/api/DiagnoseController.java,0\0\005c91ea8b15e5f43378e94fc5bb0249131396c3
 Ö
@@ -20,8 +18,6 @@ Ibike-med-api/src/main/java/at/altin/bikemedapi/config/RabbitMQConfig.java,4\d\
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-K
-bike-med-dispatcher/HELP.md,9\d\9db135dbd6cf667e50e973baa0124bb62bf2143a
 N
 bike-med-dispatcher/.gitignore,8\d\8d7837a74135c0c0d5d8cb80d6c7bda8050041f9
 é
@@ -38,8 +34,6 @@ Vbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/DiagnoseEventD
 Wbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/config/RabbitMQConfig.java,f\5\f505b7e5df01ab7790aeeaf46910fce0406f3c5e
 C
 bike-med/index.html,c\8\c84cc9b9ee0adb18b9552695f520810741b53c42
-u
-Ebike-med-api/src/main/java/at/altin/bikemedapi/helper/JsonHelper.java,3\2\32f0d279a3fd425251af35fc7812889fc361d903
 i
 9bike-med-dispatcher/.mvn/wrapper/maven-wrapper.properties,b\6\b68664c5d389ff6ef3f55742377ac3f44a02493b
 S
@@ -50,12 +44,6 @@ H
 bike-med-dispatcher/mvnw,9\a\9acf3f119be87d8d93c818914edbcde171556485
 ]
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
-J
-bike-med-werkstatt/HELP.md,b\7\b7315644dcb7a1e4f0e929fc9b9b308d3a71afe5
-F
-bike-med-lager/HELP.md,0\e\0ea5f4f0099834bd421823987ad1655885e0b19b
-G
-bike-med-office/HELP.md,0\a\0af3714f99f95448883247b81148a2e9d9346c55
 F
 bike-med-lager/pom.xml,7\8\78f8351cfa9fdfe0f7e84159dc648b5b9343f9a8
 G
@@ -112,16 +100,10 @@ Qbike-med-werkstatt/src/main/java/at/altin/bikemedwerkstatt/model/Mitarbeiter.ja
 [bike-med-werkstatt/src/main/java/at/altin/bikemedwerkstatt/data/KonfigurationEntityDao.java,2\5\2568852e75e410bd7e7aca5eeeea8a7de65aeb2c
 É
 Sbike-med-werkstatt/src/main/java/at/altin/bikemedwerkstatt/data/MitarbeiterDao.java,d\3\d3adce5952eaaff7349052d7659df8823097a04c
-à
-Xbike-med-werkstatt/src/main/java/at/altin/bikemedwerkstatt/service/WerkstattService.java,9\f\9f218c3d4629cbf038edbfd4c606a00a4011c86f
 á
 Wbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/WerkstattEventDTO.java,5\b\5b4445b6a24b24a2be1d2cadda8a2377949d7cba
-~
-Nbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/EventDTO.java,b\c\bccaecc42de0c833317e4b1f4ee84717915a8cb1
 u
 Ebike-med-lager/src/main/java/at/altin/bikemedlager/model/Produkt.java,d\b\dbc50941a981dca700c9eb92a2ce3ee91ad0a10b
-|
-Lbike-med-lager/src/main/java/at/altin/bikemedlager/service/LagerService.java,9\4\94b59c91ef3849e2ba83d4248e3d38fe7e68747d
 É
 Sbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/LagerEventDTO.java,a\5\a5cce13fe33b32aa698b47d58b63ab9a40bf2368
 w
@@ -142,26 +124,12 @@ y
 Ibike-med-office/src/main/java/at/altin/bikemedoffice/data/ProductDao.java,c\7\c70a06942c39be33f1e714e91036e7c3ab8a5643
 |
 Lbike-med-office/src/main/java/at/altin/bikemedoffice/data/OfficeDataDao.java,6\3\63f7c00ef6f797c1099b25195b464c197adc585d
-å
-\bike-med-office/src/main/java/at/altin/bikemedoffice/service/OfficeDataCollectorService.java,f\9\f91a0ff112b62b1d57a2b893e1013523a91f5bf5
-Ç
-Rbike-med-office/src/main/java/at/altin/bikemedoffice/controller/PdfController.java,a\c\ac87c7ff53ac8b490a319d45d746afd6e63be651
-|
-Lbike-med-office/src/main/java/at/altin/bikemedoffice/service/PdfService.java,f\6\f688a3771eff25e0f8fe82e714fbdf2f65b7a3de
-u
-Ebike-med-lager/src/main/java/at/altin/bikemedlager/data/init/init.sql,5\1\51d5e5cda20d6fb6d14fde09ff0dc6d3cca5e75e
 9
 	READMe.md,7\1\71b8b6a0cfcab41920e20493e722b3874badfbc2
 H
 bike-med-commons/pom.xml,6\3\6355628a258f9f108a7c4e0a6d694eb9dae2234c
-e
-5bike-med-commons/src/main/java/helper/JsonHelper.java,1\f\1fcd894bfab3fa1639c27116b0ef2aaa41dda6ba
-Å
-Qbike-med-dispatcher/src/main/java/at/altin/bikemeddispatcher/dto/DiagnoseDTO.java,8\0\806ecc673eb6d1f5907ca7cc2ed2ca95bee674ac
 }
 Mbike-med-commons/src/main/java/at/altin/bikemedcommons/helper/JsonHelper.java,f\7\f7dc7c5af12f6fb884ec7226e9847e6731398de2
-Å
-Qbike-med-commons/src/main/java/at/altin/bikemedcommons/config/RabbitMQConfig.java,0\1\01dcf545a8001b45785ef1de075519924a0dc580
 x
 Hbike-med-commons/src/main/java/at/altin/bikemedcommons/dto/EventDTO.java,7\d\7d95f88810208d2933b8dfcb5a2aa2c03cbfa371
 à
@@ -174,8 +142,6 @@ Wbike-med-commons/src/main/java/at/altin/bikemedcommons/config/CommonRabbitMQCon
 Sbike-med-commons/src/main/java/at/altin/bikemedcommons/annotation/Experimental.java,d\8\d8635923124fd91f7cdfe4745928d0a1af8b0115
 Ü
 Vbike-med-commons/src/main/java/at/altin/bikemedcommons/exception/BikeMedException.java,5\1\51a7f53761f2c18c8566032febe6e5652704f61f
-Ä
-Pbike-med-commons/src/main/java/at/altin/bikemedcommons/model/AbstractEntity.java,5\6\56fc2a6aa74597dfab43f32007e433625c5645ec
 Ä
 Pbike-med-lager/src/main/java/at/altin/bikemedlager/service/api/LagerService.java,d\e\defb6258263db80c13b332a91a2326ff75a4e14d
 à
@@ -204,17 +170,11 @@ Zbike-med-office/src/main/java/at/altin/bikemedoffice/listener/DispatcherEventLi
 `bike-med-werkstatt/src/main/java/at/altin/bikemedwerkstatt/listener/DispatcherEventListener.java,5\5\555ab43cc7717cceb1104f6fdd138a9a4c80ce0a
 E
 bike-med-commons/mvnw,b\0\b0819f7e1c642136a90c462a2f35ad55e6579aab
-Ö
-Ubike-med-commons/src/main/java/at/altin/bikemedcommons/BikeMedCommonsApplication.java,2\7\2760a1625b21a7ee4071b290ba0afd1e6e9cbb01
-~
-Nbike-med-commons/src/main/java/at/altin/bikemedcommons/ServletInitializer.java,d\1\d14ecdd09a816d53585ce2e588d94be80091c09e
 f
 6bike-med-commons/.mvn/wrapper/maven-wrapper.properties,c\5\c59cf39accff1fb9b27d73954590af9a92c5fb56
 I
 bike-med-commons/mvnw.cmd,5\1\51258c39cf6955b2297a01578925319fb5a92ed2
 K
 bike-med-commons/.gitignore,e\1\e18f1a9643445b66f0d804c843c605c306c26dcf
-F
-ddl/create-example.sql,f\5\f5b4f9d8cc55c39782f43ccf19335b999e533684
 P
  ddl/create-bikemed-testdata-.sql,e\4\e4f43a06cf68f1484e243b2416d1a6f966d0fa02

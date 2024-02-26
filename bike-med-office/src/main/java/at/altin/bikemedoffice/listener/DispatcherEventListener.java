@@ -1,9 +1,9 @@
 package at.altin.bikemedoffice.listener;
 
-import at.altin.bikemedcommons.dto.EventDTO;
-import at.altin.bikemedcommons.helper.JsonHelper;
-import at.altin.bikemedcommons.listener.CommonEventListener;
-import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
+import at.altin.bikemed.commons.dto.EventDTO;
+import at.altin.bikemed.commons.dto.OfficeDataEventDTO;
+import at.altin.bikemed.commons.helper.JsonHelper;
+import at.altin.bikemed.commons.listener.CommonEventListener;
 import at.altin.bikemedoffice.service.api.OfficeDataCollectorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

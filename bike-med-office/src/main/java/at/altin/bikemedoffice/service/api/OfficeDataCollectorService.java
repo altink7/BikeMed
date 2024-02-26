@@ -1,6 +1,7 @@
 package at.altin.bikemedoffice.service.api;
 
-import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
+
+import at.altin.bikemed.commons.dto.OfficeDataEventDTO;
 
 public interface OfficeDataCollectorService {
 

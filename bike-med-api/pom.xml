@@ -6,12 +6,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>at.altin</groupId>
     <artifactId>bike-med-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+
     <name>bike-med-api</name>
     <description>bike-med-api</description>
     <properties>
@@ -31,23 +31,15 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>annotationProcessor</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>at.altin</groupId>
-            <artifactId>bike-med-commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>at.altin</groupId>
-            <artifactId>bike-med-dispatcher</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>at.altin.bikemed.commons</groupId>
+            <artifactId>bikemedcommons</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

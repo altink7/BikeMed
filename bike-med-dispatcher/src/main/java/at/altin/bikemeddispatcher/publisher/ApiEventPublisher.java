@@ -1,8 +1,8 @@
 package at.altin.bikemeddispatcher.publisher;
 
-import at.altin.bikemedcommons.helper.JsonHelper;
-import at.altin.bikemedcommons.publisher.CommonEventPublisher;
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.helper.JsonHelper;
+import at.altin.bikemed.commons.publisher.CommonEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;

@@ -12,9 +12,11 @@
         <module name="bike-med-werkstatt" />
         <module name="bike-med-dispatcher" />
         <module name="bike-med-office" />
-        <module name="bike-med-commons" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="bike-med-commons" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

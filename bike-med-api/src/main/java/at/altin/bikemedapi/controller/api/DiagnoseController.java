@@ -1,6 +1,6 @@
 package at.altin.bikemedapi.controller.api;
 
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
 import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;

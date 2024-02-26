@@ -1,7 +1,7 @@
 package at.altin.bikemedlager.service;
 
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
-import at.altin.bikemeddispatcher.dto.LagerEventDTO;
+import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.dto.LagerEventDTO;
 import at.altin.bikemedlager.data.ProduktDao;
 import at.altin.bikemedlager.model.Produkt;
 import at.altin.bikemedlager.service.api.LagerService;

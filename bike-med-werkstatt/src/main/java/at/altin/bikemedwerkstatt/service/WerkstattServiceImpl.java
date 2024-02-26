@@ -1,7 +1,8 @@
 package at.altin.bikemedwerkstatt.service;
 
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
-import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
+
+import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.dto.WerkstattEventDTO;
 import at.altin.bikemedwerkstatt.data.KonfigurationEntityDao;
 import at.altin.bikemedwerkstatt.model.KonfigurationEntity;
 import at.altin.bikemedwerkstatt.service.api.WerkstattService;

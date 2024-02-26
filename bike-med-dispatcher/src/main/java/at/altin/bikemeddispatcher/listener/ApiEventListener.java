@@ -1,8 +1,9 @@
 package at.altin.bikemeddispatcher.listener;
 
-import at.altin.bikemedcommons.helper.JsonHelper;
-import at.altin.bikemedcommons.listener.CommonEventListener;
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
+
+import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.helper.JsonHelper;
+import at.altin.bikemed.commons.listener.CommonEventListener;
 import at.altin.bikemeddispatcher.publisher.ApiEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

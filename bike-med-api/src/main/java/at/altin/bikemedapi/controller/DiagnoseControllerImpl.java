@@ -1,8 +1,8 @@
 package at.altin.bikemedapi.controller;
 
+import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
+import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemedapi.controller.api.DiagnoseController;
-import at.altin.bikemeddispatcher.dto.DiagnoseEventDTO;
-import at.altin.bikemedcommons.helper.JsonHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;

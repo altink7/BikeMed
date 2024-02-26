@@ -1,10 +1,10 @@
 package at.altin.bikemeddispatcher.publisher;
 
-import at.altin.bikemedcommons.helper.JsonHelper;
-import at.altin.bikemedcommons.publisher.CommonEventPublisher;
-import at.altin.bikemeddispatcher.dto.LagerEventDTO;
-import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
-import at.altin.bikemeddispatcher.dto.WerkstattEventDTO;
+import at.altin.bikemed.commons.dto.LagerEventDTO;
+import at.altin.bikemed.commons.dto.OfficeDataEventDTO;
+import at.altin.bikemed.commons.dto.WerkstattEventDTO;
+import at.altin.bikemed.commons.helper.JsonHelper;
+import at.altin.bikemed.commons.publisher.CommonEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;

@@ -11,12 +11,14 @@
     <groupId>at.altin</groupId>
     <artifactId>bike-med-office</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+
     <name>bike-med-office</name>
     <description>bike-med-office</description>
+
     <properties>
         <java.version>21</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,16 +48,6 @@
             <artifactId>spring-rabbit-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>at.altin</groupId>
-            <artifactId>bike-med-commons</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>at.altin</groupId>
-            <artifactId>bike-med-dispatcher</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
         <!-- postgresql -->
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -66,6 +58,11 @@
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
             <version>5.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>at.altin.bikemed.commons</groupId>
+            <artifactId>bikemedcommons</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 

@@ -1,6 +1,6 @@
 package at.altin.bikemedoffice.service;
 
-import at.altin.bikemeddispatcher.dto.OfficeDataEventDTO;
+import at.altin.bikemed.commons.dto.OfficeDataEventDTO;
 import at.altin.bikemedoffice.data.OfficeDataDao;
 import at.altin.bikemedoffice.data.ProductDao;
 import at.altin.bikemedoffice.model.OfficeData;

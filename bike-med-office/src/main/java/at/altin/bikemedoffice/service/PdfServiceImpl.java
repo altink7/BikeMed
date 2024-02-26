@@ -1,6 +1,6 @@
 package at.altin.bikemedoffice.service;
 
-import at.altin.bikemedcommons.exception.BikeMedException;
+import at.altin.bikemed.commons.exception.BikeMedException;
 import at.altin.bikemedoffice.data.OfficeDataDao;
 import at.altin.bikemedoffice.model.OfficeData;
 import at.altin.bikemedoffice.model.Product;

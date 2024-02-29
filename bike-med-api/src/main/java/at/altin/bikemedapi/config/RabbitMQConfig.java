@@ -15,9 +15,6 @@ public class RabbitMQConfig {
     @Value("${queue.api.name}")
     private String queueName;
 
-    @Value("${spring.rabbitmq.address}")
-    private String rabbitAddress;
-
     @Bean
     public Queue apiQueue() {
         return new Queue(queueName);

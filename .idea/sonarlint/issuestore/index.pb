@@ -146,3 +146,17 @@ Zbike-med-office/src/main/java/at/altin/bikemedoffice/listener/DispatcherEventLi
 `bike-med-werkstatt/src/main/java/at/altin/bikemedwerkstatt/listener/DispatcherEventListener.java,5\5\555ab43cc7717cceb1104f6fdd138a9a4c80ce0a
 P
  ddl/create-bikemed-testdata-.sql,e\4\e4f43a06cf68f1484e243b2416d1a6f966d0fa02
+
+Obike-med-api/src/main/java/at/altin/bikemedapi/config/AzureServiceBusSetup.java,2\a\2a97850e3a7f33017a4ca6c999b6e01bff4ec55b
+A
+bike-med-api/.env,2\c\2cb7f08de417759917e7c4d7d0e10b7e3fb3ae3d
+H
+bike-med-dispatcher/.env,3\8\38bcf6a8e4b13a31cb08b75a1b88d5826d195654
+C
+bike-med-lager/.env,a\b\abb801a07caa9f759da6ec50157fcb3119f10a7f
+D
+bike-med-office/.env,e\1\e1ed0d5bf73454bc7afcaee9f9dd605ac77b2b5b
+G
+bike-med-werkstatt/.env,7\9\793d09725a81137227c3cf7a8d980a3a7033801a
+D
+bike-med/src/main.js,3\5\3506a5fafba5ea8afbd3133757033fa9120e74b0

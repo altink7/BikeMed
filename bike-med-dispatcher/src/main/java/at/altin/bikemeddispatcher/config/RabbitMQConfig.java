@@ -1,6 +1,7 @@
 package at.altin.bikemeddispatcher.config;
 
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.support.converter.DefaultClassMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
@@ -31,6 +32,15 @@ public class RabbitMQConfig {
         Jackson2JsonMessageConverter jackson2JsonMessageConverter = new Jackson2JsonMessageConverter();
         jackson2JsonMessageConverter.setClassMapper(defaultClassMapper);
         return jackson2JsonMessageConverter;
+    }
+
+    @Bean
+    public CachingConnectionFactory rabbitConnectionFactory() {
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("goose.rmq2.cloudamqp.com");
+        connectionFactory.setUsername("juglmawp");
+        connectionFactory.setPassword("bg8I7Qo3zvto1wvrSksMJyRf56xuC7EX");
+        connectionFactory.setVirtualHost("juglmawp");
+        return connectionFactory;
     }
 }
 

@@ -37,4 +37,10 @@ public class DiagnoseControllerImpl implements DiagnoseController {
         rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(diagnoseEventDTO));
         return ResponseEntity.ok(diagnoseEventDTO.getEventId());
     }
+
+    @GetMapping("/welcome")
+    @Override
+    public ResponseEntity<String> welcome() {
+        return ResponseEntity.ok("Welcome to BikeMed API");
+    }
 }

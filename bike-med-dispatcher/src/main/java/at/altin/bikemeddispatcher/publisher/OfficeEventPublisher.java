@@ -1,5 +1,6 @@
 package at.altin.bikemeddispatcher.publisher;
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.LagerEventDTO;
 import at.altin.bikemed.commons.dto.OfficeDataEventDTO;
 import at.altin.bikemed.commons.dto.WerkstattEventDTO;
@@ -7,7 +8,6 @@ import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemed.commons.publisher.CommonEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,12 +16,6 @@ public class OfficeEventPublisher implements CommonEventPublisher {
 
     private final RabbitTemplate rabbitTemplate;
 
-    @Value("${queue.dispatcher.name}")
-    private String from;
-
-    @Value("${queue.office.name}")
-    private String toOffice;
-
     public OfficeEventPublisher(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
@@ -29,7 +23,7 @@ public class OfficeEventPublisher implements CommonEventPublisher {
     @Override
     public void publish(String officeDataDTO) {
         log.info("Publishing event {} ", officeDataDTO);
-        rabbitTemplate.convertAndSend(from, officeDataDTO);
+        rabbitTemplate.convertAndSend(QueueConfig.QUEUE_DISPATCHER, officeDataDTO);
     }
 
     public void buildAndPublish(WerkstattEventDTO werkstattEventDTO, LagerEventDTO lagerEventDTO) {
@@ -38,14 +32,13 @@ public class OfficeEventPublisher implements CommonEventPublisher {
             return;
         }
 
-        publish(JsonHelper.convertObjectToJson(buildDiagnoseEvent(werkstattEventDTO, lagerEventDTO, this.toOffice)));
+        publish(JsonHelper.convertObjectToJson(buildDiagnoseEvent(werkstattEventDTO, lagerEventDTO)));
 
     }
 
     private OfficeDataEventDTO buildDiagnoseEvent(WerkstattEventDTO werkstattEventDTO,
-                                                  LagerEventDTO lagerEventDTO,
-                                                  String to) {
-        log.info("Building event to {}",  to);
+                                                  LagerEventDTO lagerEventDTO) {
+        log.info("Building event to {}", QueueConfig.QUEUE_OFFICE);
         OfficeDataEventDTO eventDTO = new OfficeDataEventDTO();
 
         if(werkstattEventDTO != null) {
@@ -61,8 +54,8 @@ public class OfficeEventPublisher implements CommonEventPublisher {
         eventDTO.setWerkstattEventDTO(werkstattEventDTO);
         eventDTO.setLagerEventDTO(lagerEventDTO);
 
-        eventDTO.setFrom(this.from);
-        eventDTO.setTo(to);
+        eventDTO.setFrom(QueueConfig.QUEUE_DISPATCHER);
+        eventDTO.setTo(QueueConfig.QUEUE_OFFICE);
 
         return eventDTO;
     }

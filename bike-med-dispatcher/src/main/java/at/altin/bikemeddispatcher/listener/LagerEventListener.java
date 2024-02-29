@@ -1,5 +1,6 @@
 package at.altin.bikemeddispatcher.listener;
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.LagerEventDTO;
 import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemed.commons.listener.CommonEventListener;
@@ -18,7 +19,7 @@ public class LagerEventListener implements CommonEventListener {
         this.officeEventPublisher = officeEventPublisher;
     }
 
-    @RabbitListener(queues = "${queue.lager.name}")
+    @RabbitListener(queues = QueueConfig.QUEUE_LAGER)
     public void handleMessage(String lagerEventDTO) {
         try {
             log.info("Received lager event: {}", lagerEventDTO);

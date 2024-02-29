@@ -8,4 +8,6 @@ import java.util.UUID;
 public interface DiagnoseController {
 
     ResponseEntity<UUID> addDiagnose(DiagnoseEventDTO diagnoseEventDTO);
+
+    ResponseEntity<String> welcome();
 }

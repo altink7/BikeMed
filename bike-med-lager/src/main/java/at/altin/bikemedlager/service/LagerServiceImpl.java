@@ -1,12 +1,12 @@
 package at.altin.bikemedlager.service;
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
 import at.altin.bikemed.commons.dto.LagerEventDTO;
 import at.altin.bikemedlager.data.ProduktDao;
 import at.altin.bikemedlager.model.Produkt;
 import at.altin.bikemedlager.service.api.LagerService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -20,12 +20,6 @@ import java.util.stream.IntStream;
 public class LagerServiceImpl implements LagerService {
     private final ProduktDao produktDao;
 
-    @Value("${queue.lager.name}")
-    private String queueName;
-
-    @Value("${queue.dispatcher.name}")
-    private String dispatcherQueueName;
-
     public LagerServiceImpl(ProduktDao produktDao) {
         this.produktDao = produktDao;
     }
@@ -34,8 +28,8 @@ public class LagerServiceImpl implements LagerService {
     public LagerEventDTO buildLagerEvent(DiagnoseEventDTO event) {
         LagerEventDTO eventDTO = new LagerEventDTO();
         eventDTO.setEventId(event.getEventId());
-        eventDTO.setFrom(queueName);
-        eventDTO.setTo(dispatcherQueueName);
+        eventDTO.setFrom(QueueConfig.QUEUE_LAGER);
+        eventDTO.setTo(QueueConfig.QUEUE_DISPATCHER);
 
 
         List<Boolean> properties = getDiagnoseBooleans(event);

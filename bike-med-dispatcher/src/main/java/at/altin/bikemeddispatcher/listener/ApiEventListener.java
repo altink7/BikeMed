@@ -1,6 +1,7 @@
 package at.altin.bikemeddispatcher.listener;
 
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
 import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemed.commons.listener.CommonEventListener;
@@ -18,7 +19,7 @@ public class ApiEventListener implements CommonEventListener {
         this.apiEventPublisher = apiEventPublisher;
     }
 
-    @RabbitListener(queues = "${queue.api.name}")
+    @RabbitListener(queues = QueueConfig.QUEUE_API)
     public void handleMessage(String diagnoseDTO) {
         try {
         log.info("Received diagnose: {}", diagnoseDTO);

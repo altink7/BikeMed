@@ -1,23 +1,21 @@
 package at.altin.bikemedwerkstatt.config;
 
+import at.altin.bikemed.commons.config.QueueConfig;
+import at.altin.bikemed.commons.config.QueueTestVariables;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.support.converter.DefaultClassMapper;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${queue.werkstatt.name}")
-    private String queueName;
-
     @Bean
     public Queue werkstattQueue() {
-        return new Queue(queueName);
+        return new Queue(QueueConfig.QUEUE_WERKSTATT);
     }
 
     /**
@@ -36,10 +34,10 @@ public class RabbitMQConfig {
 
     @Bean
     public CachingConnectionFactory rabbitConnectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory("goose.rmq2.cloudamqp.com");
-        connectionFactory.setUsername("juglmawp");
-        connectionFactory.setPassword("bg8I7Qo3zvto1wvrSksMJyRf56xuC7EX");
-        connectionFactory.setVirtualHost("juglmawp");
+        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(QueueTestVariables.HOSTNAME);
+        connectionFactory.setUsername(QueueTestVariables.USERNAME);
+        connectionFactory.setPassword(QueueTestVariables.PASSWORD);
+        connectionFactory.setVirtualHost(QueueTestVariables.VIRTUAL_HOST);
         return connectionFactory;
     }
 }

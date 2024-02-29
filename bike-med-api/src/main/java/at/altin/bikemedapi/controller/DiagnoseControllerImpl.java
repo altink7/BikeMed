@@ -1,5 +1,6 @@
 package at.altin.bikemedapi.controller;
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
 import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemedapi.controller.api.DiagnoseController;
@@ -7,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +20,6 @@ import java.util.UUID;
 public class DiagnoseControllerImpl implements DiagnoseController {
     private final RabbitTemplate rabbitTemplate;
 
-    @Value("${queue.api.name}")
-    private String queueName;
-
     @Autowired
     public DiagnoseControllerImpl(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
@@ -34,7 +31,7 @@ public class DiagnoseControllerImpl implements DiagnoseController {
     public ResponseEntity<UUID> addDiagnose(@RequestBody DiagnoseEventDTO diagnoseEventDTO) {
         log.info("Diagnose added: {}", diagnoseEventDTO);
         diagnoseEventDTO.setEventId(UUID.randomUUID());
-        rabbitTemplate.convertAndSend(queueName, JsonHelper.convertObjectToJson(diagnoseEventDTO));
+        rabbitTemplate.convertAndSend(QueueConfig.QUEUE_API, JsonHelper.convertObjectToJson(diagnoseEventDTO));
         return ResponseEntity.ok(diagnoseEventDTO.getEventId());
     }
 

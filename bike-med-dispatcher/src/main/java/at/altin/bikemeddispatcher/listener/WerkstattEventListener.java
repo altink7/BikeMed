@@ -1,5 +1,6 @@
 package at.altin.bikemeddispatcher.listener;
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.WerkstattEventDTO;
 import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemed.commons.listener.CommonEventListener;
@@ -18,7 +19,7 @@ public class WerkstattEventListener implements CommonEventListener {
         this.officeEventPublisher = officeEventPublisher;
     }
 
-    @RabbitListener(queues = "${queue.werkstatt.name}")
+    @RabbitListener(queues = QueueConfig.QUEUE_WERKSTATT)
     public void handleMessage(String werkstattEventDTO) {
         try {
             log.info("Received werkstatt event: {}", werkstattEventDTO);

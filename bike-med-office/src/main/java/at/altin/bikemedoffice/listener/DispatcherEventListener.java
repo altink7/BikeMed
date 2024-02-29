@@ -1,5 +1,6 @@
 package at.altin.bikemedoffice.listener;
 
+import at.altin.bikemed.commons.config.QueueConfig;
 import at.altin.bikemed.commons.dto.EventDTO;
 import at.altin.bikemed.commons.dto.OfficeDataEventDTO;
 import at.altin.bikemed.commons.helper.JsonHelper;
@@ -17,27 +18,21 @@ public class DispatcherEventListener implements CommonEventListener {
     private final RabbitTemplate rabbitTemplate;
     private final OfficeDataCollectorService officeDataCollectorService;
 
-    @Value("${queue.office.name}")
-    private String queueName;
-
-    @Value("${queue.dispatcher.name}")
-    private String dispatcherQueueName;
-
     public DispatcherEventListener(RabbitTemplate rabbitTemplate,
                                           OfficeDataCollectorService officeDataCollectorService) {
         this.rabbitTemplate = rabbitTemplate;
         this.officeDataCollectorService = officeDataCollectorService;
     }
 
-    @RabbitListener(queues = "${queue.dispatcher.name}")
+    @RabbitListener(queues = QueueConfig.QUEUE_DISPATCHER)
     public void handleMessage(String diagnoseEventDTO) {
         try {
             log.info("Received diagnose: {}", diagnoseEventDTO);
             EventDTO baseEvent = JsonHelper.convertJsonToObject(diagnoseEventDTO, EventDTO.class);
 
-            if (baseEvent.getTo() != null && !baseEvent.getTo().equals(queueName)) {
+            if (baseEvent.getTo() != null && !baseEvent.getTo().equals(QueueConfig.QUEUE_OFFICE)) {
                 log.info("Ignoring event for other service");
-                rabbitTemplate.convertAndSend(dispatcherQueueName, diagnoseEventDTO);
+                rabbitTemplate.convertAndSend(QueueConfig.QUEUE_DISPATCHER, diagnoseEventDTO);
                 return;
             }
             officeDataCollectorService.collectOfficeData(JsonHelper.convertJsonToObject(diagnoseEventDTO, OfficeDataEventDTO.class));

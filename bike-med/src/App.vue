@@ -70,7 +70,7 @@ export default {
         alert('Identifikationsnummer: ' + response.data);
         console.log('Diagnose abgeschickt', response.data);
 
-        const pdfResponse = await axios.get('http://localhost:5004/api/pdf/' + response.data, { responseType: 'blob' });
+        const pdfResponse = await axios.get('https://bike-med-office-1709207940776.azurewebsites.net/api/pdf/' + response.data, { responseType: 'blob' });
         const file = new Blob([pdfResponse.data], { type: 'application/pdf' });
         const fileURL = URL.createObjectURL(file);
         window.open(fileURL);

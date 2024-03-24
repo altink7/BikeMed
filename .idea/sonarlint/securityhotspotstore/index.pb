@@ -148,3 +148,9 @@ P
  ddl/create-bikemed-testdata-.sql,e\4\e4f43a06cf68f1484e243b2416d1a6f966d0fa02
 D
 bike-med/src/main.js,3\5\3506a5fafba5ea8afbd3133757033fa9120e74b0
+r
+B.github/workflows/azure-static-web-apps-yellow-plant-0f7f9af10.yml,5\4\54b10da508e1ab5bf9360e024a729e5b3d28ab94
+Y
+).github/workflows/qodana_code_quality.yml,4\f\4f751ec70a5e7dcf5d05ba8965348b627e7b3e80
+K
+bike-med-api/plugin-api.xml,f\7\f7149d7e467a97c872920373fa90d7d7b6929689

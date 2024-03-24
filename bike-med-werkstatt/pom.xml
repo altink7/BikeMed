@@ -33,8 +33,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>at.altin.bikemed.commons</groupId>
             <artifactId>bikemedcommons</artifactId>
-            <version>1.1.0</version>
+            <version>1.2.1</version>
         </dependency>
     </dependencies>
 
@@ -66,10 +66,10 @@
                 <version>2.9.0</version>
                 <configuration>
                     <schemaVersion>v2</schemaVersion>
-                    <resourceGroup>bike-med-werkstatt-1709207965186-rg</resourceGroup>
+                    <resourceGroup>Bike-Med</resourceGroup>
                     <appName>bike-med-werkstatt-1709207965186</appName>
                     <pricingTier>F1</pricingTier>
-                    <region>centralus</region>
+                    <region>westeurope</region>
                     <runtime>
                         <os>Windows</os>
                         <javaVersion>Java 17</javaVersion>

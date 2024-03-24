@@ -6,6 +6,7 @@ import at.altin.bikemed.commons.dto.LagerEventDTO;
 import at.altin.bikemedlager.data.ProduktDao;
 import at.altin.bikemedlager.model.Produkt;
 import at.altin.bikemedlager.service.api.LagerService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +16,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@RequiredArgsConstructor
 @Service
 @Slf4j
 public class LagerServiceImpl implements LagerService {
     private final ProduktDao produktDao;
-
-    public LagerServiceImpl(ProduktDao produktDao) {
-        this.produktDao = produktDao;
-    }
 
     @Override
     public LagerEventDTO buildLagerEvent(DiagnoseEventDTO event) {

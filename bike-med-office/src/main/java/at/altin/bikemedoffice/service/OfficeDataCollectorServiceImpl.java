@@ -6,21 +6,19 @@ import at.altin.bikemedoffice.data.ProductDao;
 import at.altin.bikemedoffice.model.OfficeData;
 import at.altin.bikemedoffice.model.Product;
 import at.altin.bikemedoffice.service.api.OfficeDataCollectorService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@RequiredArgsConstructor
 @Service
 @Slf4j
 public class OfficeDataCollectorServiceImpl implements OfficeDataCollectorService {
     private final OfficeDataDao officeDataDao;
     private final ProductDao productDao;
 
-    public OfficeDataCollectorServiceImpl(OfficeDataDao officeDataDao,
-                                          ProductDao productDao) {
-        this.officeDataDao = officeDataDao;
-        this.productDao = productDao;
-    }
-
+    @Transactional
     public void collectOfficeData(OfficeDataEventDTO event) {
         log.info("Saving office data: {}", event);
         OfficeData officeData = officeDataDao.findById(event.getEventId()).orElse(new OfficeData());
@@ -44,7 +42,7 @@ public class OfficeDataCollectorServiceImpl implements OfficeDataCollectorServic
     }
 
     private void setWerkstattEventData(OfficeDataEventDTO event, OfficeData officeData) {
-        if(event.getWerkstattEventDTO() != null) {
+        if (event.getWerkstattEventDTO() != null) {
             officeData.setPlattenReparatur(event.getWerkstattEventDTO().getDiagnoseEventDTO().isPlattenReparatur());
             officeData.setVentil(event.getWerkstattEventDTO().getDiagnoseEventDTO().isVentil());
             officeData.setBremsen(event.getWerkstattEventDTO().getDiagnoseEventDTO().isBremsen());

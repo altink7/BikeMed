@@ -1,47 +1,33 @@
 package at.altin.bikemedwerkstatt.listener;
 
 
-import at.altin.bikemed.commons.config.QueueConfig;
+import at.altin.bikemed.commons.config.ExchangeConfig;
 import at.altin.bikemed.commons.dto.DiagnoseEventDTO;
-import at.altin.bikemed.commons.dto.EventDTO;
 import at.altin.bikemed.commons.helper.JsonHelper;
 import at.altin.bikemed.commons.listener.CommonEventListener;
 import at.altin.bikemedwerkstatt.service.api.WerkstattService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.querydsl.QuerydslUtils;
 import org.springframework.stereotype.Component;
 
+@RequiredArgsConstructor
 @Slf4j
 @Component
 public class DispatcherEventListener implements CommonEventListener {
     private final RabbitTemplate rabbitTemplate;
     private final WerkstattService werkstattService;
 
-    public DispatcherEventListener(RabbitTemplate rabbitTemplate, WerkstattService werkstattService) {
-        this.rabbitTemplate = rabbitTemplate;
-        this.werkstattService = werkstattService;
-    }
-
-    @RabbitListener(queues = QueueConfig.QUEUE_DISPATCHER)
+    @RabbitListener(queues = ExchangeConfig.DISPATCHER_WERKSTATT_EXCHANGE)
     public void handleMessage(String diagnoseEventDTO) {
         try {
             log.info("Received diagnose: {}", diagnoseEventDTO);
-            EventDTO baseEvent = JsonHelper.convertJsonToObject(diagnoseEventDTO, EventDTO.class);
-
-            if (baseEvent.getTo() != null && !baseEvent.getTo().equals(QueueConfig.QUEUE_WERKSTATT)) {
-                log.info("Ignoring event for other service");
-                rabbitTemplate.convertAndSend(QueueConfig.QUEUE_DISPATCHER, diagnoseEventDTO);
-                return;
-            }
-
             DiagnoseEventDTO event = JsonHelper.convertJsonToObject(diagnoseEventDTO, DiagnoseEventDTO.class);
+            rabbitTemplate.convertAndSend(ExchangeConfig.WERKSTATT_DISPATCHER_EXCHANGE,
+                    JsonHelper.convertObjectToJson(werkstattService.buildWerkstattEvent(event)));
 
-            rabbitTemplate.convertAndSend(QueueConfig.QUEUE_WERKSTATT, JsonHelper.convertObjectToJson(werkstattService.buildWerkstattEvent(event)));
-
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error("Error handling message", e);
         }
     }

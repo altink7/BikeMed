@@ -11,21 +11,19 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @Service
 @Slf4j
 public class PdfServiceImpl implements PdfService {
     public static final String LINE = "------------------------------";
     private final OfficeDataDao officeDataDao;
-
-    public PdfServiceImpl(OfficeDataDao officeDataDao) {
-        this.officeDataDao = officeDataDao;
-    }
 
     public byte[] generatePdf(UUID officeDataId) {
         try {

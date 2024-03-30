@@ -1,6 +1,6 @@
 package at.altin.bikemeddispatcher.config;
 
-import at.altin.bikemed.commons.config.QueueConfig;
+import at.altin.bikemed.commons.config.ExchangeConfig;
 import at.altin.bikemed.commons.config.QueueTestVariables;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
@@ -14,13 +14,24 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
 
     @Bean
-    public Queue dispatcherQueue() {
-        return new Queue(QueueConfig.QUEUE_DISPATCHER);
+    public Queue dispatcherWerkstattQueue() {
+        return new Queue(ExchangeConfig.DISPATCHER_WERKSTATT_EXCHANGE);
+    }
+
+    @Bean
+    public Queue dispatcherLagerQueue() {
+        return new Queue(ExchangeConfig.DISPATCHER_LAGER_EXCHANGE);
+    }
+
+    @Bean
+    public Queue dispatcherOfficeQueue() {
+        return new Queue(ExchangeConfig.DISPATCHER_OFFICE_EXCHANGE);
     }
 
     /**
      * This method is used to convert the message to JSON. <br>
      * and trust all packages.
+     *
      * @return Jackson2JsonMessageConverter
      */
     @Bean

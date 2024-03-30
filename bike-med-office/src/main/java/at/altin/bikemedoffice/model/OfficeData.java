@@ -1,6 +1,9 @@
 package at.altin.bikemedoffice.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.util.List;
@@ -13,7 +16,7 @@ public class OfficeData {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    @OneToMany(mappedBy = "officeData", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "officeData")
     private List<Product> products;
 
     private boolean plattenReparatur;

@@ -1,0 +1,27 @@
+<plugin>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-webapp-maven-plugin</artifactId>
+    <version>2.9.0</version>
+    <configuration>
+        <schemaVersion>v2</schemaVersion>
+        <resourceGroup>Bike-Med</resourceGroup>
+        <appName>bike-med-api-1709188487163</appName>
+        <pricingTier>F1</pricingTier>
+        <region>northeurope</region>
+        <runtime>
+            <os>Windows</os>
+            <javaVersion>Java 17</javaVersion>
+            <webContainer>Java SE</webContainer>
+        </runtime>
+        <deployment>
+            <resources>
+                <resource>
+                    <directory>${project.basedir}/target</directory>
+                    <includes>
+                        <include>*.jar</include>
+                    </includes>
+                </resource>
+            </resources>
+        </deployment>
+    </configuration>
+</plugin>

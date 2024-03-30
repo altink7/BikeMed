@@ -2,6 +2,7 @@ package at.altin.bikemedoffice.controller;
 
 import at.altin.bikemedoffice.controller.api.PdfController;
 import at.altin.bikemedoffice.service.api.PdfService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,15 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/pdf")
 @CrossOrigin
 public class PdfControllerImpl implements PdfController {
     private final PdfService pdfService;
-
-    public PdfControllerImpl(PdfService pdfService) {
-        this.pdfService = pdfService;
-    }
 
     @Override
     @GetMapping("/{id}")
